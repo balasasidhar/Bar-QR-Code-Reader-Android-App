@@ -1,5 +1,7 @@
 package com.sasidhar.barcodetest;
 
+import com.google.zxing.client.android.CaptureActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,8 +31,11 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                startActivityForResult(intent, 0);
+				Intent intent = new Intent(getApplicationContext(),CaptureActivity.class);
+				intent.setAction("com.google.zxing.client.android.SCAN");
+				// this stops saving ur barcode in barcode scanner app's history
+				intent.putExtra("SAVE_HISTORY", false);
+				startActivityForResult(intent, 0);
 			}
 		});
     }
